@@ -85,4 +85,16 @@ if (logoWrapper) {
             behavior: 'smooth'
         });
     });
+    window.addEventListener('load', () => {
+    const video = document.getElementById('heroVideo');
+    if (video) {
+        video.loop = true;
+        video.play().catch(e => console.log('Video autoplay failed:', e));
+        
+        // لو الفيديو وقف لأي سبب، ارجع شغله تاني
+        video.addEventListener('ended', () => {
+            video.play();
+        });
+    }
+});
 }
