@@ -40,14 +40,27 @@ body {
 }
 
 /* Hero Video */
+/* Hero Video Background */
 .hero-video-bg {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     z-index: -2;
+}
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 120px 8% 80px;
+    flex-wrap: wrap;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
 }
 .hero-video-bg video {
     width: 100%;
