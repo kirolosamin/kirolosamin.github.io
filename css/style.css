@@ -47,7 +47,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -2;
+    z-index: 0;
 }
 .hero-video-bg video {
     width: 100%;
@@ -60,7 +60,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(10, 14, 26, 0.8);
+    background: rgba(10, 14, 26, 0.7);
     z-index: 1;
 }
 
@@ -199,11 +199,16 @@ nav a:hover {
 .hero-left {
     flex: 1;
     min-width: 280px;
+    position: relative;
+    z-index: 2;
 }
 .hero-right {
     flex: 0.5;
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
 }
 .badge {
     border: 1px solid #d4af37;
@@ -237,6 +242,8 @@ nav a:hover {
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #d4af37;
+    position: relative;
+    z-index: 2;
 }
 .hero-image-circle img {
     width: 100%;
@@ -754,12 +761,22 @@ body.menu-open {
     .hero {
         flex-direction: column;
         text-align: center;
+        min-height: auto;
+        padding: 100px 5% 60px;
     }
     .hero-description {
         margin: 0 auto;
     }
     .cta {
         justify-content: center;
+    }
+    .hero-right {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .hero-image-circle {
+        width: 220px;
+        height: 220px;
     }
     .about-container {
         flex-direction: column-reverse;
@@ -783,7 +800,7 @@ body.menu-open {
 
 /* الموبايل */
 @media (max-width: 768px) {
-    /* Navbar - شفاف على الهيرو */
+    /* Navbar */
     nav {
         background: transparent;
         backdrop-filter: none;
@@ -801,7 +818,7 @@ body.menu-open {
         z-index: 1001;
     }
     
-    /* القائمة المنبثقة - تظهر من اليمين */
+    /* القائمة المنبثقة */
     .nav-menu {
         position: fixed;
         top: 0;
@@ -823,12 +840,10 @@ body.menu-open {
         list-style: none;
     }
     
-    /* لما القائمة تظهر */
     .nav-menu.active {
         right: 0;
     }
     
-    /* تنسيق الروابط */
     .nav-menu li {
         width: 100%;
     }
@@ -849,12 +864,23 @@ body.menu-open {
         padding-left: 10px;
     }
     
-    /* Logo */
     .logo-wrapper {
         flex: 1;
     }
     
-    /* About Section - الصورة تحت الكلام */
+    /* Hero - الصورة جوة الهيرو */
+    .hero {
+        min-height: auto;
+        padding: 100px 5% 60px;
+    }
+    
+    .hero-image-circle {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+    
+    /* About Section */
     .about-container {
         flex-direction: column !important;
         text-align: center;
