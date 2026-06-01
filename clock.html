@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>BLDC Motor Controller | Kerolos Amin</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23d4af37' rx='20'/%3E%3Ctext x='50' y='67' font-size='48' text-anchor='middle' fill='%23000000' font-weight='bold' font-family='Arial'%3EKA%3C/text%3E%3C/svg%3E">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-zoom.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-thumbnail.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'>
+    <link rel='stylesheet' href='css/style.css'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0a0e1a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #e8edff;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: #d4af37;
+            text-decoration: none;
+            border: 1px solid rgba(212,175,55,0.3);
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn i {
+            font-size: 11px;
+        }
+
+        .back-btn:hover {
+            background: #d4af37;
+            color: #0a0e1a;
+            border-color: #d4af37;
+            transform: translateY(-2px);
+        }
+
+        /* Project Page Container */
+        .project-page {
+            max-width: 880px;
+            margin: 100px auto;
+            padding: 48px;
+            background: #0f1422;
+            border-radius: 28px;
+            border: 1px solid #151b2e;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Title - White */
+        .project-page h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #e8edff;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* Section Headers - Gold */
+        .project-page h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 40px;
+            margin-bottom: 18px;
+            color: #d4af37;
+            border-left: 3px solid #d4af37;
+            padding-left: 14px;
+        }
+
+        .project-page h2::after {
+            display: none;
+        }
+
+        /* Project Tag */
+        .project-tag {
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #151b2e;
+        }
+
+        .tag-category {
+            color: #d4af37;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .tag-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .tag-badge {
+            background: rgba(26, 35, 64, 0.6);
+            color: #8a94b8;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 30px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(212,175,55,0.1);
+        }
+
+        .tag-badge:hover {
+            background: rgba(212,175,55,0.15);
+            color: #d4af37;
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        /* Paragraphs */
+        .project-page p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #8a94b8;
+            margin-bottom: 18px;
+        }
+
+        /* Lists */
+        .project-page ul {
+            list-style: none;
+            margin: 16px 0 20px;
+        }
+
+        .project-page li {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #8a94b8;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(26, 35, 64, 0.5);
+        }
+
+        .project-page li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .project-page li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-size: 0.7rem;
+        }
+
+        .project-page li strong {
+            color: #e8edff;
+            font-weight: 500;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            margin: 28px 0 20px;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #0a0e1a, #0f1422);
+            border-radius: 18px;
+            min-height: 160px;
+            border: 1px solid #151b2e;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: #d4af37;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox customization */
+        .lg-outer .lg-thumb-outer {
+            background: rgba(10, 14, 26, 0.95);
+        }
+
+        .lg-outer .lg-toogle-thumb {
+            color: #d4af37;
+        }
+
+        .lg-outer .lg-img-wrap {
+            background: rgba(10, 14, 26, 0.9);
+        }
+
+        /* Footer inside project page */
+        .project-footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            text-align: center;
+            border-top: 1px solid #151b2e;
+        }
+
+        .project-footer p {
+            color: #5a668a;
+            font-size: 11px;
+            margin-bottom: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-page {
+                margin: 80px 20px;
+                padding: 32px 24px;
+            }
+            .project-page h1 {
+                font-size: 1.6rem;
+            }
+            .project-page h2 {
+                font-size: 1rem;
+                margin-top: 32px;
+            }
+            .back-btn {
+                top: 16px;
+                left: 16px;
+                padding: 6px 14px;
+                font-size: 11px;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            .gallery-item {
+                min-height: 130px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-page {
+                margin: 70px 16px;
+                padding: 24px 20px;
+            }
+            .project-page h1 {
+                font-size: 1.4rem;
+            }
+            .project-page p, .project-page li {
+                font-size: 0.8rem;
+            }
+            .tag-badge {
+                font-size: 0.6rem;
+                padding: 3px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class='back-btn' href='index.html'><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
+    <section class='project-page'>
+        <h1>BLDC Motor Controller (ESC)</h1>
+        
+        <div class="project-tag">
+            <span class="tag-category">Power Electronics</span>
+            <div class="tag-items">
+                <span class="tag-badge">Arduino UNO</span>
+                <span class="tag-badge">C++</span>
+                <span class="tag-badge">MOSFETs</span>
+            </div>
+        </div>
+
+        <h2>Overview</h2>
+        <p>تم تصميم وتطوير وحدة تحكم إلكترونية للمحركات ثلاثية الطور (BLDC) باستخدام Arduino UNO وMOSFETs. يعمل النظام على توليد إشارات PWM بتردد 20kHz للتحكم في سرعة وعزم المحرك بدقة عالية.</p>
+
+        <h2>My Role & Implementation</h2>
+        <p>قمت بتصميم الدائرة الإلكترونية بالكامل باستخدام Eagle، وبرمجة المتحكم الدقيق بلغة C++، واختبار النظام تحت أحمال مختلفة. قمت أيضاً بدمج مستشعرات Hall effect لقراءة موضع العضو الدوار وتطبيق خوارزمية 6-step commutation.</p>
+
+        <h2>Technical Highlights</h2>
+        <ul>
+            <li><strong>3‑Phase MOSFET inverter</strong> - باستخدام ترانزستورات IRF3205 بقدرة تصل إلى 80A</li>
+            <li><strong>IR2110 gate driver</strong> - لعزل وتضخيم إشارات التحكم بجهد يصل إلى 500V</li>
+            <li><strong>PWM speed control</strong> - تردد متغير 1kHz-32kHz مع duty cycle قابل للتعديل</li>
+            <li><strong>Back‑EMF zero-crossing detection</strong> - للتحكم sensorless في المحركات عالية السرعة</li>
+            <li><strong>Protection circuits</strong> - حماية من التيار الزائد، وارتفاع الحرارة، والجهد العكسي</li>
+        </ul>
+
+        <h2>Challenges & Problem Solving</h2>
+        <p>أكبر تحدٍ واجهته هو الضوضاء الكهربائية الناتجة عن Commutation والتي كانت تؤثر على قراءة Back-EMF. قمت بحل المشكلة بإضافة مرشحات RC مخصصة على كل مرحلة، وتعديل خوارزمية البرمجيات لتتجاهل الـglitches وتأخذ قراءات متوسطة. كما قمت بإضافة مكثفات فصل (decoupling capacitors) بقرب كل MOSFET لتحسين استقرار الجهد.</p>
+
+        <h2>Results</h2>
+        <p>تمكنت الوحدة من تشغيل محرك BLDC بقدرة 250W بسرعة تصل إلى 8000 RPM مع كفاءة 87% عند الحمل الكامل. تم اختبار النظام لمدة 72 ساعة متواصلة بدون أعطال، وتم توثيق النتائج باستخدام راسم الإشارة (oscilloscope) لإظهار أشكال الموجات عند نقاط التحكم المختلفة.</p>
+
+        <h2>Gallery</h2>
+        <div class="gallery" id="gallery">
+            <div class="gallery-item" data-src="https://via.placeholder.com/800x600?text=Circuit+Schematic">
+                <img src="https://via.placeholder.com/400x250?text=Circuit+Schematic" alt="Circuit Schematic">
+            </div>
+            <div class="gallery-item" data-src="https://via.placeholder.com/800x600?text=PCB+Design">
+                <img src="https://via.placeholder.com/400x250?text=PCB+Design" alt="PCB Design">
+            </div>
+            <div class="gallery-item" data-src="https://via.placeholder.com/800x600?text=Prototype">
+                <img src="https://via.placeholder.com/400x250?text=Prototype" alt="Prototype">
+            </div>
+            <div class="gallery-item" data-src="https://via.placeholder.com/800x600?text=Testing">
+                <img src="https://via.placeholder.com/400x250?text=Testing" alt="Testing">
+            </div>
+        </div>
+
+        <!-- Footer داخل صفحة المشروع -->
+        <div class="project-footer">
+            <p>© 2026 Kerolos Amin Khalil. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script>
+        // تشغيل Lightbox للصور
+        if (document.getElementById('gallery')) {
+            lightGallery(document.getElementById('gallery'), {
+                selector: '.gallery-item',
+                plugins: [lgZoom, lgThumbnail],
+                speed: 500,
+                zoom: true,
+                thumbnail: true,
+                showThumbByDefault: false,
+                animateThumb: true,
+                zoomFromOrigin: true,
+                allowMediaOverlap: true,
+                toggleThumb: true,
+                download: false,
+                counter: true,
+                mousewheel: true
+            });
+        }
+    </script>
+</body>
+</html>

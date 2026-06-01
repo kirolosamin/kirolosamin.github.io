@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="مهندس ميكاترونكس متخصص في تصميم وبرمجة الأنظمة الذكية - روبوتات، إلكترونيات قدرة، أنظمة مدمجة">
+<meta name="author" content="Kerolos Amin">
+<title>Kerolos Amin | Robotics and Mechatronics engineerin</title>
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23d4af37' rx='20'/%3E%3Ctext x='50' y='67' font-size='48' text-anchor='middle' fill='%23000000' font-weight='bold' font-family='Arial'%3EKA%3C/text%3E%3C/svg%3E">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Hero Video Background -->
+<div class="hero-video-bg">
+    <video autoplay muted loop playsinline id="heroVideo">
+        <source src="assets/video/hero-bg.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+</div>
+
+<div class="bg-grid"></div>
+<div class="parallax-bg"></div>
+
+<nav>
+    <div class="logo-wrapper">
+        <span class="logo-wave">~</span>
+        <div class="logo" id="logoLink">Kerolos Amin</div>
+        <span class="logo-dot"></span>
+    </div>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#arsenal">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<!-- 1. Hero Section -->
+<section class="hero">
+    <div class="hero-left">
+        <span class="badge">Mechatronics & Robotics Engineering Student</span>
+        <h1 class="hero-title">Building <span class="gold-text">Autonomous</span> Systems & Intelligent Hardware.</h1>
+        <p class="hero-description">I am a Mechatronics Engineer focused on bridging theory and practice. From designing complete suspension systems and custom PCBs to programming microcontrollers.</p>
+        <div class="cta">
+            <a href="#projects" class="btn gold">View My Work</a>
+            <a href="#contact" class="btn transparent">Let's Talk</a>
+            <a href="#" class="btn transparent">Download Resume</a>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="hero-image-circle">
+            <img src="Picsart_25-02-04_02-17-00-196.jpg.jpeg" alt="Profile">
+        </div>
+    </div>
+</section>
+
+<!-- 2. About Section -->
+<section id="about">
+    <div class="about-container">
+        <div class="about-text">
+            <h2>About Me</h2>
+            <p>I'm a Mechatronics and Robotics Engineering student at Helwan National University working at the intersection of mechanics, electronics, and software. I build engineering projects from the ground up, integrating hardware, embedded systems, and software into working solutions. My experience includes IoT smart home systems using ESP8266, mechanical design using CAD tools, and developing BLDC motor controllers from scratch along with robotics and embedded systems projects. I enjoy PCB design, embedded debugging, and full system integration. I break complex engineering problems down, understand them deeply, and improve them through real-world implementation.</p>
+            <p style="margin-top: 10px;">Whether it's wiring hardware, writing embedded code, or solving a challenging technical problem, I bring the same mindset: understand it, build it, and make it better.</p>
+            
+            <div class="about-stats">
+                <div class="stat-item">
+                    <h3>4</h3>
+                    <span>Engineering Projects</span>
+                </div>
+                <div class="stat-item">
+                    <h3></h3>
+                    <span></span>
+                </div>
+                <div class="stat-item">
+                    <h3>2+</h3>
+                    <span>Years Building</span>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">
+            <div class="about-image-rect">
+                <img src="Picsart_25-02-04_02-17-00-196.jpg.jpeg" alt="Kerolos Amin">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Featured Projects Section -->
+<section id="projects">
+    <div class="section-header">
+        <h2>Featured Projects</h2>
+        <p class="section-subtitle">Click on any project to view detailed engineering processes, photos, and videos.</p>
+    </div>
+    <div class="projects">
+                
+        <!-- Project 1 - BLDC Motor Controller -->
+        <div class="card" onclick="location.href='bldc.html';">
+            <div class="card-cover">
+                <img src="bldc.jpeg" alt="BLDC Motor Controller">
+            </div>
+            <div class="card-content">
+                <span class="card-category">POWER ELECTRONICS</span>
+                <h3 class="card-title">BLDC Motor Controller</h3>
+                <p class="card-description">3‑Phase ESC with Arduino control and Back-EMF sensing. Designed for drone and robotic applications with high efficiency.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Arduino UNO</span>
+                    <span class="card-tag">MOSFETs</span>
+                    <span class="card-tag">PWM</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 2 - Smart Home Automation -->
+        <div class="card" onclick="location.href='iot.html';">
+            <div class="card-cover">
+                <img src="كنترول.jpeg" alt="Smart Home Automation">
+            </div>
+            <div class="card-content">
+                <span class="card-category">IoT</span>
+                <h3 class="card-title">Smart Home Automation</h3>
+                <p class="card-description">ESP8266 based home control system with mobile app integration. Control lights, fans, and appliances remotely.</p>
+                <div class="card-tags">
+                    <span class="card-tag">ESP8266</span>
+                    <span class="card-tag">Relay</span>
+                    <span class="card-tag">WiFi</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 3 - digital clock -->
+        <div class="card" onclick="location.href='#';">
+            <div class="card-cover">
+                <img src="con.jpeg" alt="Autonomous Robot">
+            </div>
+            <div class="card-content">
+                <span class="card-category">Electronics / Digital Logic</span>
+                <h3 class="card-title">Digital Clock Using Logic Gates.</h3>
+                <p class="card-description">Designed and implemented a digital clock using logic gates and 7-segment displays, demonstrating fundamental digital electronics concepts. Built and tested the circuit 
+                    to perform accurate time counting and display functionality without using a microcontroller.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Digital Electronics</span>
+                    <span class="card-tag">Logic Gates</span>
+                    <span class="card-tag">7-Segment Displays</span>
+                    <span class="card-tag">74LS90</span>  
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<!-- 4. Technical Arsenal Section -->
+<section id="arsenal">
+    <div class="section-header">
+        <h2>Technical Arsenal</h2>
+        <p class="section-subtitle">A comprehensive toolkit combining software architecture, mechanical design, and low-level hardware control.</p>
+    </div>
+    <div class="arsenal-grid">
+           <div class="arsenal-card">
+            <h3>Software & Logic</h3>
+            <ul>
+                <li>Python</li>
+                <li>Embedded C/C++ (Arduino, ESP32)</li>
+                <li>State Machines & Algorithms</li>
+                <li>Object-Oriented Programming</li>
+            
+            </ul>
+        </div>
+        <div class="arsenal-card">
+            <h3>CAD & Simulation</h3>
+            <ul>
+                <li>Autodesk Inventor (3D Modeling)</li>
+                <li>MATLAB / Simulink</li>
+                <li>AutoCAD</li>
+                <li>SolidWorks</li>
+                <li>Mechanical Part Design</li>
+            </ul>
+        </div>
+        <div class="arsenal-card">
+            <h3>Hardware & Electronics</h3>
+            <ul>
+                <li>Power Electronics & Motor Control</li>
+                <li>PCB Prototyping & Design</li>
+                <li>Digital Logic & Circuitry</li>
+                <li>Sensor Integration</li>
+            </ul>
+        </div>
+        <div class="arsenal-card">
+            <h3>Leadership & Soft Skills</h3>
+            <ul>
+                <li>Technical Team Leadership (Spark X)</li>
+                <li>Project & Workshop Planning</li>
+                <li>System Troubleshooting & Debugging</li>
+                <li>Graphic Design & Branding</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Experience & Leadership Section -->
+<section id="experience">
+    <div class="section-header">
+        <h2>Experience & Leadership</h2>
+    </div>
+    <div class="experience-list">
+        
+        <div class="exp-item">
+            <div class="exp-bullet">
+                <div class="exp-dot"></div>
+                <div class="exp-line"></div>
+            </div>
+            <div class="exp-info">
+                <div class="exp-date">2025 - Present</div>
+                <div class="exp-name">*****************************</div>
+                <div class="exp-company">*****************************</div>
+                <p class="exp-text">*****************************</p>
+            </div>
+        </div>
+        
+        <div class="exp-item">
+            <div class="exp-bullet">
+                <div class="exp-dot"></div>
+                <div class="exp-line"></div>
+            </div>
+            <div class="exp-info">
+                <div class="exp-date">2024 - 2028</div>
+                <div class="exp-name">*****************************</div>
+                <div class="exp-company">*****************************</div>
+                <p class="exp-text">*****************************</p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+<!-- 6. Contact Section -->
+<section id="contact">
+    <div class="contact-card">
+        <h2>Ready to build something great?</h2>
+        <p class="contact-subtitle">I am actively seeking internships, junior engineering roles, and freelance technical projects. Let's connect.</p>
+        
+        <div class="contact-buttons">
+            <a href="mailto:kirolosamin2112@gmail.com" class="contact-btn email-btn">
+                <i class="fas fa-envelope"></i> Email Me
+            </a>
+        </div>
+        
+        <div class="contact-location">
+            <span><i class="fas fa-map-marker-alt"></i> Cairo, Egypt</span>
+        </div>
+        
+        <div class="social-icons">
+            <a href="https://wa.me/01210158030" target="_blank" rel="noopener" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://github.com/kerolos" target="_blank" rel="noopener" class="social-icon github">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/kerolos-amin-44a46732b" target="_blank" rel="noopener" class="social-icon linkedin">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+        </div>
+    </div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2026 Kerolos Amin Khalil. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
