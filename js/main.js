@@ -19,10 +19,11 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Video autoplay
+// Video autoplay and loop
 window.addEventListener('load', () => {
     const video = document.getElementById('heroVideo');
     if (video) {
+        video.loop = true;
         video.play().catch(e => console.log('Video autoplay failed:', e));
     }
 });
@@ -85,16 +86,46 @@ if (logoWrapper) {
             behavior: 'smooth'
         });
     });
-    window.addEventListener('load', () => {
-    const video = document.getElementById('heroVideo');
-    if (video) {
-        video.loop = true;
-        video.play().catch(e => console.log('Video autoplay failed:', e));
-        
-        // لو الفيديو وقف لأي سبب، ارجع شغله تاني
-        video.addEventListener('ended', () => {
-            video.play();
-        });
+}
+
+// Mobile Menu Toggle (3 شرط)
+const mobileMenu = document.getElementById('mobile-menu');
+const navMenu = document.querySelector('.nav-menu');
+
+if (mobileMenu) {
+    mobileMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+}
+
+// Close menu when clicking on a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navMenu) {
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+});
+
+// Close menu when clicking outside (على الخلفية)
+document.addEventListener('click', (e) => {
+    if (navMenu && navMenu.classList.contains('active')) {
+        if (!navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
     }
 });
+
+// Prevent body scroll when menu is open
+if (navMenu) {
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
 }
