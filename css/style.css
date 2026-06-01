@@ -735,6 +735,11 @@ section {
     transform: translateY(0);
 }
 
+/* منع التمرير عند فتح القائمة */
+body.menu-open {
+    overflow: hidden;
+}
+
 /* ====== Responsive ====== */
 
 /* الشاشات المتوسطة */
@@ -778,106 +783,6 @@ section {
 
 /* الموبايل */
 @media (max-width: 768px) {
-    /* نفس فكرة الديسكتوب - شفاف على الهيرو ويتلون بعد السكرول */
-    nav {
-        background: transparent;
-        backdrop-filter: none;
-        border-bottom: none;
-    }
-    
-    nav.scrolled {
-        background: #0a0e1a;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    
-    /* إظهار قائمة الـ 3 شرط */
-    .menu-toggle {
-        display: flex;
-    }
-    
-    /* القائمة المنبثقة */
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 75%;
-        height: calc(100vh - 70px);
-        background: #0a0e1a;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding: 40px 30px;
-        gap: 25px;
-        transition: 0.3s ease;
-        z-index: 999;
-        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu li a {
-        font-size: 18px;
-        font-weight: 500;
-        display: block;
-        padding: 10px 0;
-        color: #e8edff;
-    }
-    
-    .logo-wrapper {
-        flex: 1;
-    }
-    
-    /* About Section */
-    .about-container {
-        flex-direction: column !important;
-        text-align: center;
-    }
-    
-    .about-image {
-        order: 2;
-        margin-top: 30px;
-        justify-content: center;
-    }
-    
-    .about-text {
-        order: 1;
-    }
-    
-    .about-stats {
-        justify-content: center;
-    }
-    
-    .about-text h2::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    /* Contact Section */
-    .contact-card {
-        padding: 35px 25px;
-    }
-    .contact-card h2 {
-        font-size: 24px;
-    }
-    .contact-subtitle {
-        font-size: 13px;
-    }
-}
-/* شاشات أصغر من 700 */
-@media (max-width: 700px) {
-    .arsenal-grid {
-        grid-template-columns: 1fr;
-    }
-    section {
-        padding: 60px 5%;
-    }
-}
-
-/* شاشات صغيرة جداً */
-/* الموبايل */
-@media (max-width: 768px) {
     /* Navbar - شفاف على الهيرو */
     nav {
         background: transparent;
@@ -896,12 +801,12 @@ section {
         z-index: 1001;
     }
     
-    /* القائمة المنبثقة - تصميم عالمي (تظهر من اليمين) */
+    /* القائمة المنبثقة - تظهر من اليمين */
     .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 70%;
+        width: 75%;
         max-width: 300px;
         height: 100vh;
         background: rgba(10, 14, 26, 0.98);
@@ -944,30 +849,25 @@ section {
         padding-left: 10px;
     }
     
-    /* منع تمرير الخلفية لما القائمة مفتوحة */
-    body.menu-open {
-        overflow: hidden;
-    }
-    
-    /* لوجو */
+    /* Logo */
     .logo-wrapper {
         flex: 1;
     }
     
-    /* About Section */
+    /* About Section - الصورة تحت الكلام */
     .about-container {
         flex-direction: column !important;
         text-align: center;
     }
     
     .about-image {
-        order: 2;
+        order: 2 !important;
         margin-top: 30px;
         justify-content: center;
     }
     
     .about-text {
-        order: 1;
+        order: 1 !important;
     }
     
     .about-stats {
@@ -988,5 +888,58 @@ section {
     }
     .contact-subtitle {
         font-size: 13px;
+    }
+}
+
+/* شاشات أصغر من 700 */
+@media (max-width: 700px) {
+    .arsenal-grid {
+        grid-template-columns: 1fr;
+    }
+    section {
+        padding: 60px 5%;
+    }
+}
+
+/* شاشات صغيرة جداً */
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 30px;
+    }
+    .hero-image-circle {
+        width: 180px;
+        height: 180px;
+    }
+    .about-image-rect {
+        max-width: 180px;
+    }
+    .projects {
+        grid-template-columns: 1fr;
+    }
+    .logo {
+        font-size: 16px;
+    }
+    .logo-wave {
+        font-size: 14px;
+    }
+    .logo-dot {
+        width: 3px;
+        height: 3px;
+    }
+    .social-icon {
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+    .exp-item {
+        gap: 12px;
+    }
+    .exp-bullet {
+        width: 20px;
+    }
+    .exp-name {
+        font-size: 15px;
+    }
+    .exp-text {
+        font-size: 11px;
     }
 }
