@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Digital Clock Using Logic Gates | Kerolos Amin</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23d4af37' rx='20'/%3E%3Ctext x='50' y='67' font-size='48' text-anchor='middle' fill='%23000000' font-weight='bold' font-family='Arial'%3EKA%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'>
+    <link rel='stylesheet' href='css/style.css'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0a0e1a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #e8edff;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: #d4af37;
+            text-decoration: none;
+            border: 1px solid rgba(212,175,55,0.3);
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn i {
+            font-size: 11px;
+        }
+
+        .back-btn:hover {
+            background: #d4af37;
+            color: #0a0e1a;
+            border-color: #d4af37;
+            transform: translateY(-2px);
+        }
+
+        .project-page {
+            max-width: 880px;
+            margin: 100px auto;
+            padding: 48px;
+            background: #0f1422;
+            border-radius: 28px;
+            border: 1px solid #151b2e;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .project-page h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #e8edff;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .project-page h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 40px;
+            margin-bottom: 18px;
+            color: #d4af37;
+            border-left: 3px solid #d4af37;
+            padding-left: 14px;
+        }
+
+        .project-page h2::after {
+            display: none;
+        }
+
+        .project-tag {
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #151b2e;
+        }
+
+        .tag-category {
+            color: #d4af37;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .tag-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .tag-badge {
+            background: rgba(26, 35, 64, 0.6);
+            color: #8a94b8;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 30px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(212,175,55,0.1);
+        }
+
+        .tag-badge:hover {
+            background: rgba(212,175,55,0.15);
+            color: #d4af37;
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        .project-page p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #8a94b8;
+            margin-bottom: 18px;
+        }
+
+        .project-page ul {
+            list-style: none;
+            margin: 16px 0 20px;
+        }
+
+        .project-page li {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #8a94b8;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(26, 35, 64, 0.5);
+        }
+
+        .project-page li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .project-page li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-size: 0.7rem;
+        }
+
+        .project-page li strong {
+            color: #e8edff;
+            font-weight: 500;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 28px 0 20px;
+        }
+
+        .gallery-item-wrapper {
+            display: flex;
+            flex-direction: column;
+            background: #0f1422;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #151b2e;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item-wrapper:hover {
+            transform: scale(1.02);
+            border-color: #d4af37;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item {
+            display: block;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
+            background: #0a0e1a;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .gallery-item-wrapper:hover .gallery-item img {
+            transform: scale(1.05);
+        }
+
+        /* Play button */
+        .gallery-item.video-item {
+            position: relative;
+        }
+
+        .gallery-item.video-item::after {
+            content: '\f04b';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 22px;
+            color: white;
+            background: rgba(0, 0, 0, 0.55);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            backdrop-filter: blur(2px);
+        }
+
+        .gallery-item.video-item:hover::after {
+            transform: translate(-50%, -50%) scale(1.05);
+            background: #d4af37;
+            color: #0a0e1a;
+        }
+
+        .gallery-caption {
+            padding: 10px 12px;
+            font-size: 12px;
+            color: #8a94b8;
+            text-align: center;
+            border-top: 1px solid #1a2340;
+            background: #0f1422;
+        }
+
+        .gallery-caption:empty {
+            display: none;
+        }
+
+        .project-footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            text-align: center;
+            border-top: 1px solid #151b2e;
+        }
+
+        .project-footer p {
+            color: #5a668a;
+            font-size: 11px;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .project-page {
+                margin: 80px 20px;
+                padding: 32px 24px;
+            }
+            .project-page h1 {
+                font-size: 1.6rem;
+            }
+            .project-page h2 {
+                font-size: 1rem;
+                margin-top: 32px;
+            }
+            .back-btn {
+                top: 16px;
+                left: 16px;
+                padding: 6px 14px;
+                font-size: 11px;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+            .gallery-item.video-item::after {
+                width: 46px;
+                height: 46px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-page {
+                margin: 70px 16px;
+                padding: 24px 20px;
+            }
+            .project-page h1 {
+                font-size: 1.4rem;
+            }
+            .project-page p, .project-page li {
+                font-size: 0.8rem;
+            }
+            .tag-badge {
+                font-size: 0.6rem;
+                padding: 3px 10px;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item.video-item::after {
+                width: 42px;
+                height: 42px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class='back-btn' href='../../index.html'><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
+    <section class='project-page'>
+        <h1>Digital Clock Using Logic Gates</h1>
+        
+        <div class="project-tag">
+            <span class="tag-category">Electronics / Digital Logic</span>
+            <div class="tag-items">
+                <span class="tag-badge">Logic Gates</span>
+                <span class="tag-badge">7-Segment Displays</span>
+                <span class="tag-badge">74LS90</span>
+                <span class="tag-badge">NE555</span>
+                <span class="tag-badge">74LS47</span>
+            </div>
+        </div>
+
+        <h2>Overview</h2>
+        <p>Designed and implemented a fully functional 24-hour digital clock using TTL logic integrated circuits and 7-segment displays as part of an Electronics course project. The system was built entirely without microcontrollers, demonstrating core principles of digital electronics, sequential logic design, and timing systems.</p>
+
+        <h2>My Role & Implementation</h2>
+        <p>This was a solo project where I independently designed, simulated, and built the entire system. The design was first verified using Proteus simulation, then implemented on breadboards using TTL ICs. I was responsible for circuit design, component selection, system integration, debugging, and final testing.</p>
+        <p>The clock was constructed using cascaded counter stages for seconds, minutes, and hours, with proper rollover logic for 24-hour operation. A NE555 timer configured with a potentiometer was used to generate a stable 1 Hz clock signal for real-time counting.</p>
+
+        <h2>Technical Highlights</h2>
+        <ul>
+            <li><strong>74LS90 Decade Counters</strong> – Used for building cascaded BCD counters for seconds, minutes, and hours.</li>
+            <li><strong>74LS47 BCD-to-7-Segment Decoders</strong> – Drove six common-anode 7-segment displays for real-time visualization.</li>
+            <li><strong>NE555 Timer (Astable Mode)</strong> – Configured with a potentiometer to generate a stable 1 Hz clock pulse.</li>
+            <li><strong>24-Hour Rollover Logic</strong> – Implemented using 74LS08 AND gate IC for correct reset at 23:59:59 → 00:00:00.</li>
+            <li><strong>Manual Time Adjustment</strong> – Two pushbuttons were integrated to adjust hours and minutes independently.</li>
+            <li><strong>Simulation & Hardware Implementation</strong> – Verified using Proteus before real hardware assembly on breadboards.</li>
+        </ul>
+
+        <h2>Challenges & Problem Solving</h2>
+        <p>A major challenge was ensuring correct synchronization during rollover transitions between seconds, minutes, and hours. Initial issues were caused by propagation delays and unstable transitions in cascaded counters. This was solved by refining reset logic using 74LS08 gates and validating signal integrity across all stages.</p>
+
+        <h2>Results</h2>
+        <p>The final system successfully displayed real-time hours, minutes, and seconds using six 7-segment displays with stable 24-hour operation. The clock maintained accurate timing using a 1 Hz signal and operated reliably after extensive hardware testing.</p>
+        
+        <h2>Gallery</h2>
+        <div class="gallery">
+            <!-- صورة 1 -->
+            <div class="gallery-item-wrapper">
+                <a href="cloc1.jpeg" class="gallery-item glightbox">
+                    <img src="cloc1.jpeg" alt="Circuit Schematic">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+            
+            <!-- صورة 2 -->
+            <div class="gallery-item-wrapper">
+                <a href="cl2.jpeg" class="gallery-item glightbox">
+                    <img src="cl2.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+            
+                        <!-- صورة 3 -->
+            <div class="gallery-item-wrapper">
+                <a href="cl3.jpeg" class="gallery-item glightbox">
+                    <img src="cl3.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+            <!-- صورة 4 -->
+            <div class="gallery-item-wrapper">
+                <a href="cl4.jpeg" class="gallery-item glightbox">
+                    <img src="cl4.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+            <!-- صورة 7 -->
+            <div class="gallery-item-wrapper">
+                <a href="cli1.jpeg" class="gallery-item glightbox">
+                    <img src="cli1.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+            <!-- صورة 6 -->
+            <div class="gallery-item-wrapper">
+                <a href="ci2.jpeg" class="gallery-item glightbox">
+                    <img src="ci2.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+                        <!-- صورة 7 -->
+            <div class="gallery-item-wrapper">
+                <a href="ci3.jpeg" class="gallery-item glightbox">
+                    <img src="ci3.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+                        <!-- صورة 4 -->
+            <div class="gallery-item-wrapper">
+                <a href="p.jpeg" class="gallery-item glightbox">
+                    <img src="p.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+
+            <!-- فيديو - مع صورة مصغرة -->
+            <div class="gallery-item-wrapper">
+                <a href="ف1.mp4" class="gallery-item video-item glightbox" data-glightbox="type: video">
+                    <img src="con.jpeg" alt="Video Thumbnail">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+            
+            <!-- فيديو - مع صورة مصغرة -->
+            <div class="gallery-item-wrapper">
+                <a href="ف2.mp4" class="gallery-item video-item glightbox" data-glightbox="type: video">
+                    <img src="con.jpeg" alt="Video Thumbnail">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+
+        <div class="project-footer">
+            <p>© 2026 Kerolos Amin Khalil. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: true,
+            draggable: true,
+            autoplayVideos: true,
+            plyr: {
+                config: {
+                    ratio: '16:9',
+                    hideControls: false
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificates | Kerolos Amin</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23d4af37' rx='20'/%3E%3Ctext x='50' y='67' font-size='48' text-anchor='middle' fill='%23000000' font-weight='bold' font-family='Arial'%3EKA%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+    body {
+        background: #0a0e1a;
+        padding-top: 40px;
+    }
+    
+    .back-link {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        color: #d4af37;
+        text-decoration: none;
+        font-size: 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(10, 14, 26, 0.9);
+        padding: 8px 18px;
+        border-radius: 40px;
+        z-index: 100;
+        backdrop-filter: blur(8px);
+        transition: 0.3s;
+    }
+    .back-link:hover {
+        color: white;
+        background: #d4af37;
+    }
+    
+    .certificates-page {
+        padding: 100px 8% 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .page-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .page-header h1 {
+        font-size: 42px;
+        font-weight: 700;
+        color: #e8edff;
+        margin-bottom: 15px;
+    }
+    
+    .page-header h1 span {
+        color: #d4af37;
+    }
+    
+    .page-header p {
+        color: #8a94b8;
+        font-size: 14px;
+    }
+    
+    .certificates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 28px;
+        margin-top: 20px;
+    }
+    
+    .cert-card {
+        background: #0f1422;
+        border: 1px solid #1a2340;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .cert-card:hover {
+        transform: translateY(-5px);
+        border-color: #d4af37;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    
+    /* الصورة تغطي المساحة بالكامل وتظهر الشهادة كاملة */
+    .cert-preview-img {
+        height: 260px;
+        overflow: hidden;
+        position: relative;
+        background: #0a0e1a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .cert-preview-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #0a0e1a;
+        padding: 10px;
+        transition: 0.3s;
+    }
+    
+    .cert-card:hover .cert-preview-img img {
+        transform: scale(1.02);
+    }
+    
+    /* أيقونة PDF عند المرور */
+    .cert-preview-img::after {
+        content: '\f1c1';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        font-size: 40px;
+        color: white;
+        background: rgba(0,0,0,0.7);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .cert-card:hover .cert-preview-img::after {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    
+    .cert-content {
+        padding: 20px;
+    }
+    
+    .cert-title {
+        font-size: 17px;
+        font-weight: 700;
+        color: #e8edff;
+        margin-bottom: 6px;
+    }
+    
+    .cert-issuer {
+        font-size: 12px;
+        color: #8a94b8;
+        margin-bottom: 4px;
+    }
+    
+    .cert-issuer i {
+        font-size: 10px;
+        color: #d4af37;
+        margin-right: 5px;
+    }
+    
+    .cert-date {
+        font-size: 11px;
+        color: #d4af37;
+        margin-bottom: 15px;
+        display: inline-block;
+        background: rgba(212,175,55,0.1);
+        padding: 3px 10px;
+        border-radius: 20px;
+    }
+    
+    .cert-buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 5px;
+    }
+    
+    .cert-btn {
+        flex: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 0;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+    
+    .cert-btn-primary {
+        background: #d4af37;
+        color: #0a0e1a;
+        border: 1px solid #d4af37;
+    }
+    
+    .cert-btn-primary:hover {
+        background: transparent;
+        color: #d4af37;
+    }
+    
+    .cert-btn-secondary {
+        background: transparent;
+        color: #8a94b8;
+        border: 1px solid #1a2340;
+    }
+    
+    .cert-btn-secondary:hover {
+        border-color: #d4af37;
+        color: #d4af37;
+    }
+    
+    @media (max-width: 600px) {
+        .certificates-grid {
+            grid-template-columns: 1fr;
+        }
+        .cert-preview-img {
+            height: 220px;
+        }
+        .cert-buttons {
+            flex-direction: column;
+        }
+        .page-header h1 {
+            font-size: 32px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+<section class="certificates-page">
+    <div class="page-header">
+        <h1>My <span>Certificates</span></h1>
+        <p>Professional certifications and courses I've completed</p>
+    </div>
+
+    <div class="certificates-grid">
+        
+        <!-- شهادة SolidWorks -->
+        <div class="cert-card">
+            <div class="cert-preview-img">
+                <img src="UC-5843b7cd-db0a-4092-a0f1-859cac3a436f.jpg" alt="SolidWorks Certificate">
+            </div>
+            <div class="cert-content">
+                <div class="cert-title">SolidWorks Professional</div>
+                <div class="cert-issuer"><i class="fas fa-cube"></i> Udemy</div>
+                <div class="cert-date">2026</div>
+                <div class="cert-buttons">
+                    <a href="UC-5843b7cd-db0a-4092-a0f1-859cac3a436f.pdf" target="_blank" class="cert-btn cert-btn-primary">
+                        <i class="fas fa-eye"></i> View
+                    </a>
+                    <a href="UC-5843b7cd-db0a-4092-a0f1-859cac3a436f.pdf" download class="cert-btn cert-btn-secondary">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- شهادة 2 - Arduino For Robotics -->
+        <div class="cert-card">
+            <div class="cert-preview-img">
+                <img src="certificates/pcb-preview.jpg" alt="PCB Design">
+            </div>
+            <div class="cert-content">
+                <div class="cert-title">Arduino For Robotics</div>
+                <div class="cert-issuer"><i class="fas fa-robot"></i> Yanfaa </div>
+                <div class="cert-date">2026</div>
+                <div class="cert-buttons">
+                    <a href="certificates/pcb-cert.pdf" target="_blank" class="cert-btn cert-btn-primary">
+                        <i class="fas fa-eye"></i> View
+                    </a>
+                    <a href="certificates/pcb-cert.pdf" download class="cert-btn cert-btn-secondary">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</section>
+
+</body>
+</html>
