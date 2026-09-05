@@ -3,16 +3,11 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>BLDC Motor Controller | Kerolos Amin</title>
-    <!-- Favicon -->
+    <title>BLDC Motor Controller (ESC) | Kerolos Amin</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23d4af37' rx='20'/%3E%3Ctext x='50' y='67' font-size='48' text-anchor='middle' fill='%23000000' font-weight='bold' font-family='Arial'%3EKA%3C/text%3E%3C/svg%3E">
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lightbox CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-zoom.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-thumbnail.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'>
     <link rel='stylesheet' href='css/style.css'>
     <style>
@@ -33,7 +28,6 @@
             color: #e8edff;
         }
 
-        /* Back Button */
         .back-btn {
             position: fixed;
             top: 24px;
@@ -65,7 +59,6 @@
             transform: translateY(-2px);
         }
 
-        /* Project Page Container */
         .project-page {
             max-width: 880px;
             margin: 100px auto;
@@ -76,7 +69,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        /* Title - White */
         .project-page h1 {
             font-size: 2rem;
             font-weight: 600;
@@ -86,7 +78,6 @@
             line-height: 1.2;
         }
 
-        /* Section Headers - Gold */
         .project-page h2 {
             font-size: 1.2rem;
             font-weight: 500;
@@ -101,7 +92,6 @@
             display: none;
         }
 
-        /* Project Tag */
         .project-tag {
             margin-bottom: 32px;
             padding-bottom: 20px;
@@ -141,7 +131,6 @@
             border-color: rgba(212,175,55,0.3);
         }
 
-        /* Paragraphs */
         .project-page p {
             font-size: 0.9rem;
             line-height: 1.6;
@@ -149,7 +138,6 @@
             margin-bottom: 18px;
         }
 
-        /* Lists */
         .project-page ul {
             list-style: none;
             margin: 16px 0 20px;
@@ -188,53 +176,94 @@
         /* Gallery */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin: 28px 0 20px;
         }
 
-        .gallery-item {
-            background: linear-gradient(135deg, #0a0e1a, #0f1422);
+        .gallery-item-wrapper {
+            display: flex;
+            flex-direction: column;
+            background: #0f1422;
             border-radius: 18px;
-            min-height: 160px;
+            overflow: hidden;
             border: 1px solid #151b2e;
             transition: all 0.3s ease;
-            cursor: pointer;
-            overflow: hidden;
-            position: relative;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover {
+        .gallery-item-wrapper:hover {
             transform: scale(1.02);
             border-color: #d4af37;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        .gallery-item:hover img {
+        .gallery-item {
+            display: block;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
+            background: #0a0e1a;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .gallery-item-wrapper:hover .gallery-item img {
             transform: scale(1.05);
         }
 
-        /* Lightbox customization */
-        .lg-outer .lg-thumb-outer {
-            background: rgba(10, 14, 26, 0.95);
+        /* Play button */
+        .gallery-item.video-item {
+            position: relative;
         }
 
-        .lg-outer .lg-toogle-thumb {
-            color: #d4af37;
+        .gallery-item.video-item::after {
+            content: '\f04b';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 22px;
+            color: white;
+            background: rgba(0, 0, 0, 0.55);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            backdrop-filter: blur(2px);
         }
 
-        .lg-outer .lg-img-wrap {
-            background: rgba(10, 14, 26, 0.9);
+        .gallery-item.video-item:hover::after {
+            transform: translate(-50%, -50%) scale(1.05);
+            background: #d4af37;
+            color: #0a0e1a;
         }
 
-        /* Footer inside project page */
+        .gallery-caption {
+            padding: 10px 12px;
+            font-size: 12px;
+            color: #8a94b8;
+            text-align: center;
+            border-top: 1px solid #1a2340;
+            background: #0f1422;
+        }
+
+        .gallery-caption:empty {
+            display: none;
+        }
+
         .project-footer {
             margin-top: 48px;
             padding-top: 24px;
@@ -248,7 +277,6 @@
             margin-bottom: 0;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .project-page {
                 margin: 80px 20px;
@@ -268,10 +296,12 @@
                 font-size: 11px;
             }
             .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             }
-            .gallery-item {
-                min-height: 130px;
+            .gallery-item.video-item::after {
+                width: 46px;
+                height: 46px;
+                font-size: 18px;
             }
         }
 
@@ -290,6 +320,14 @@
                 font-size: 0.6rem;
                 padding: 3px 10px;
             }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item.video-item::after {
+                width: 42px;
+                height: 42px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -297,7 +335,7 @@
     <a class='back-btn' href='../../index.html'><i class="fas fa-arrow-left"></i> Back to Home</a>
     
     <section class='project-page'>
-        <h1>BLDC Motor Controller (ESC)</h1>
+    <h1>BLDC Motor Controller (ESC)</h1>
         
         <div class="project-tag">
             <span class="tag-category">Power Electronics</span>
@@ -308,68 +346,151 @@
             </div>
         </div>
 
-        <h2>Overview</h2>
-        <p>تم تصميم وتطوير وحدة تحكم إلكترونية للمحركات ثلاثية الطور (BLDC) باستخدام Arduino UNO وMOSFETs. يعمل النظام على توليد إشارات PWM بتردد 20kHz للتحكم في سرعة وعزم المحرك بدقة عالية.</p>
+<h2>Overview</h2>
 
-        <h2>My Role & Implementation</h2>
-        <p>قمت بتصميم الدائرة الإلكترونية بالكامل باستخدام Eagle، وبرمجة المتحكم الدقيق بلغة C++، واختبار النظام تحت أحمال مختلفة. قمت أيضاً بدمج مستشعرات Hall effect لقراءة موضع العضو الدوار وتطبيق خوارزمية 6-step commutation.</p>
+<p>
+An Electronic Speed Controller (ESC) for a 3-phase Brushless DC (BLDC) motor was designed, implemented, and tested using Arduino UNO, MOSFET-based power electronics, and PWM control techniques. The system utilizes 6-step commutation to provide reliable motor operation and adjustable speed control under different loading conditions.
+</p>
 
-        <h2>Technical Highlights</h2>
-        <ul>
-            <li><strong>3‑Phase MOSFET inverter</strong> - باستخدام ترانزستورات IRF3205 بقدرة تصل إلى 80A</li>
-            <li><strong>IR2110 gate driver</strong> - لعزل وتضخيم إشارات التحكم بجهد يصل إلى 500V</li>
-            <li><strong>PWM speed control</strong> - تردد متغير 1kHz-32kHz مع duty cycle قابل للتعديل</li>
-            <li><strong>Back‑EMF zero-crossing detection</strong> - للتحكم sensorless في المحركات عالية السرعة</li>
-            <li><strong>Protection circuits</strong> - حماية من التيار الزائد، وارتفاع الحرارة، والجهد العكسي</li>
-        </ul>
+<h2>My Role & Implementation</h2>
 
-        <h2>Challenges & Problem Solving</h2>
-        <p>أكبر تحدٍ واجهته هو الضوضاء الكهربائية الناتجة عن Commutation والتي كانت تؤثر على قراءة Back-EMF. قمت بحل المشكلة بإضافة مرشحات RC مخصصة على كل مرحلة، وتعديل خوارزمية البرمجيات لتتجاهل الـglitches وتأخذ قراءات متوسطة. كما قمت بإضافة مكثفات فصل (decoupling capacitors) بقرب كل MOSFET لتحسين استقرار الجهد.</p>
+<p>
+I participated in the practical implementation of the project, including hardware assembly, component integration, electrical wiring, system testing, troubleshooting, and performance validation. My responsibilities involved assembling the power stage, verifying electrical connections, conducting practical tests under different operating conditions, and assisting in hardware debugging and optimization to improve system reliability and stability.
+</p>
 
-        <h2>Results</h2>
-        <p>تمكنت الوحدة من تشغيل محرك BLDC بقدرة 250W بسرعة تصل إلى 8000 RPM مع كفاءة 87% عند الحمل الكامل. تم اختبار النظام لمدة 72 ساعة متواصلة بدون أعطال، وتم توثيق النتائج باستخدام راسم الإشارة (oscilloscope) لإظهار أشكال الموجات عند نقاط التحكم المختلفة.</p>
+<h2>Technical Highlights</h2>
 
+<ul>
+    <li><strong>3-Phase MOSFET Inverter Design</strong> – Power stage for driving a 3-phase BLDC motor efficiently.</li>
+
+    <li><strong>IR2110 High/Low-Side Gate Driver</strong> – Provides reliable switching and control of MOSFETs in the inverter stage.</li>
+
+    <li><strong>PWM Speed Control</strong> – Adjustable motor speed control through PWM signal modulation.</li>
+
+    <li><strong>6-Step Commutation</strong> – Electronic commutation technique for BLDC motor operation.</li>
+
+    <li><strong>Back-EMF and Hall-Sensor Compatible Architecture</strong> – Flexible motor control architecture supporting different feedback methods.</li>
+
+    <li><strong>Voltage and Current Measurement Integration</strong> – Monitoring and testing capabilities for performance evaluation.</li>
+
+    <li><strong>Hardware Debugging & Switching Optimization</strong> – Practical testing and optimization of switching behavior and controller stability.</li>
+</ul>
+
+<h2>Challenges & Problem Solving</h2>
+
+<p>
+One of the main challenges was achieving stable motor operation and reliable switching performance under varying operating conditions. Several rounds of testing and troubleshooting were performed to identify hardware-related issues, verify electrical connections, and improve overall system stability. Oscilloscope-based measurements and practical validation were used to analyze system behavior and optimize performance.
+</p>
+
+<h2>Results</h2>
+
+<p>
+The controller successfully operated a 3-phase BLDC motor with stable commutation and adjustable speed control under different load conditions. The project provided valuable hands-on experience in power electronics, motor drive systems, hardware testing, electrical troubleshooting, and practical implementation of embedded motor control solutions.
+</p>
+
+<h2>Technologies Used</h2>
+
+<p>
+Arduino UNO • Power Electronics • IR2110 • MOSFET Drivers • PWM Control • BLDC Motor Control • Oscilloscope Testing • Hardware Debugging • Electrical Integration
+</p>        
         <h2>Gallery</h2>
-        <div class="gallery" id="gallery">
-            <div class="gallery-item" data-src="https://via.placeholder.com/800x600?text=Circuit+Schematic">
-                <img src="https://via.placeholder.com/400x250?text=Circuit+Schematic" alt="Circuit Schematic">
+        <div class="gallery">
+            <!-- صورة 1 -->
+            <div class="gallery-item-wrapper">
+                <a href="bb.jpeg" class="gallery-item glightbox">
+                    <img src="bb.jpeg" alt="Circuit Schematic">
+                </a>
+                <div class="gallery-caption"></div>
             </div>
-            <div class="gallery-item" data-src="https://via.placeholder.com/800x600?text=PCB+Design">
-                <img src="https://via.placeholder.com/400x250?text=PCB+Design" alt="PCB Design">
+            
+            <!-- صورة 2 -->
+            <div class="gallery-item-wrapper">
+                <a href="bldc.jpeg" class="gallery-item glightbox">
+                    <img src="bldc.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
             </div>
-            <div class="gallery-item" data-src="https://via.placeholder.com/800x600?text=Prototype">
-                <img src="https://via.placeholder.com/400x250?text=Prototype" alt="Prototype">
+            
+                        <!-- صورة 3 -->
+            <div class="gallery-item-wrapper">
+                <a href="WhatsApp Image 2026-06-01 at 3.46.39 AM.jpeg" class="gallery-item glightbox">
+                    <img src="WhatsApp Image 2026-06-01 at 3.46.39 AM.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
             </div>
-            <div class="gallery-item" data-src="https://via.placeholder.com/800x600?text=Testing">
-                <img src="https://via.placeholder.com/400x250?text=Testing" alt="Testing">
+            <!-- صورة 4 -->
+            <div class="gallery-item-wrapper">
+                <a href="pr.jpeg" class="gallery-item glightbox">
+                    <img src="pr.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
             </div>
-        </div>
+            <!-- صورة 7 -->
+            <div class="gallery-item-wrapper">
+                <a href="cli1.jpeg" class="gallery-item glightbox">
+                    <img src="cli1.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+            <!-- صورة 6 -->
+            <div class="gallery-item-wrapper">
+                <a href="ci2.jpeg" class="gallery-item glightbox">
+                    <img src="ci2.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+                        <!-- صورة 7 -->
+            <div class="gallery-item-wrapper">
+                <a href="ci3.jpeg" class="gallery-item glightbox">
+                    <img src="ci3.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+                        <!-- صورة 4 -->
+            <div class="gallery-item-wrapper">
+                <a href="p.jpeg" class="gallery-item glightbox">
+                    <img src="p.jpeg" alt="Clock Circuit">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
 
-        <!-- Footer داخل صفحة المشروع -->
+            <!-- فيديو - مع صورة مصغرة -->
+            <div class="gallery-item-wrapper">
+                <a href=".mp4" class="gallery-item video-item glightbox" data-glightbox="type: video">
+                    <img src="con.jpeg" alt="Video Thumbnail">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+            
+            <!-- فيديو - مع صورة مصغرة -->
+            <div class="gallery-item-wrapper">
+                <a href="ف2.mp4" class="gallery-item video-item glightbox" data-glightbox="type: video">
+                    <img src="con.jpeg" alt="Video Thumbnail">
+                </a>
+                <div class="gallery-caption"></div>
+            </div>
+
         <div class="project-footer">
             <p>© 2026 Kerolos Amin Khalil. All rights reserved.</p>
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script>
-        // تشغيل Lightbox للصور
-        if (document.getElementById('gallery')) {
-            lightGallery(document.getElementById('gallery'), {
-                selector: '.gallery-item',
-                plugins: [lgZoom, lgThumbnail],
-                speed: 500,
-                zoom: true,
-                thumbnail: true,
-                showThumbByDefault: false,
-                animateThumb: true,
-                zoomFromOrigin: true,
-                allowMediaOverlap: true,
-                toggleThumb: true,
-                download: false,
-                counter: true,
-                mousewheel: true
-            });
-        }
+        const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: true,
+            draggable: true,
+            autoplayVideos: true,
+            plyr: {
+                config: {
+                    ratio: '16:9',
+                    hideControls: false
+                }
+            }
+        });
     </script>
 </body>
 </html>
